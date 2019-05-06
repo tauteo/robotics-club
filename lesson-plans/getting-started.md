@@ -127,6 +127,30 @@ The Raspbian operating system comes pre-installed with several programs. Here is
    The Wolfram Language is a general multi-paradigm computational communication languagedeveloped by Wolfram Research and is the programming language of the mathematical symbolic computation program Mathematica and the Wolfram Programming Cloud. It emphasizes symbolic computation, functional programming, and rule-based programming and can employ arbitrary structures and data.
 
 ## Hardware overview
+The Raspberry Pi consists of several hardware components working together. These are:
+1. ARMv8 Cortex-A53 CPU (Broadcom BCM2837B0 SoC in the 3B+)
+2. RAM (1GB in the 3B+)
+3. Wireless communication (IEEE 802.11.b/g/n/ac wireless LAN, Bluetooth 4.2, BLE)
+4. Wired communication (USB 2.0 and Gigabit Ethernet over USB 2.0)
+5. SD card reader
+6. Video interfaces (HDMI & RCA)
+7. Sound interface (3.5mm audio jack)
+8. Display interface (DSI)
+9. Camera interface (CSI)
+10. General Purpose I/O pins (GPIO)
+
+![raspi layout][pi-labelled]
+
+The GPIO pins are rated at 3.3V and a maximum of 16mA (although you will not be able to run all of the pins at this current simultaneously). All of the pins have internal pull-up/pull-down resistors. All of the pins, when configured as a general purpose input, can also be configured as an interrupt source (level, rising/falling edge, asynchronous rising/falling edge).
+
+In practice, some pins are reserved for special uses (and are not available for general purpose use) and some functions (such as the hardware implementations of UART, I2C, and SPI) are fixed to certain pins. In general, the [pinout][interactive-pinout] of the Raspberry Pi is as follows:  
+![raspi pinout][pi-pinout]
+The green pins are not reserved for any special use (except the ones labelled PWM - Hardware Pulse Width Modulation and GCLK - Hardware General Purpose Clock) and can be used as general purpose I/O. The black pins are reserved for ground. The other coloured pins are fixed to the indicated communications protocol, but can also be configured for general purpose I/O (although this means that you can no longer use them for communications).
+
+If you ever forget the pin layout, there is a handy utility built into the Pi, which is called "pinout". You can always access this utility from the terminal / command line by just typing `pinout`. This will then give you the following printout:
+![pinout command][pinout-command]
+
+The numbers on these pinouts use the BCM order and can be used directly to address a specific pin. An alternative numbering layout called "WiringPi" can also be used, although we will generally not be using this layout during this course.
 
 [raspi-downloads]: https://www.raspberrypi.org/downloads/raspbian/
 [noobs-downloads]: https://www.raspberrypi.org/downloads/noobs/
