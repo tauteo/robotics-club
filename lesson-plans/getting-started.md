@@ -68,15 +68,43 @@ sudo apt-get upgrade
 
 ## Configuration
 ### Using the built in utility
-1. Locale
-2. Memory
-3. VNC
-4. Communication protocols
+The Raspberry Pi has a built-in configuration utility. This utility is used to make certain configuration tasks, such as configuring vnc, i2c, camera etc. easier.
+The configuration utility is accessed by either running the graphical interface from the desktop or running the command-line utility.
+The graphical interface can be accessed from `Start->Preferences->Raspberry Pi Configuration`. ![config utility][raspi-config]
 
+The command-line utility can be accessed by typing `sudo raspi-config` into the terminal.
+
+Some of the basic settings that you may need to change are the following:
+1. **Password**  
+   If you want your password to be different to the default "raspberry". This is a good idea if are going to be connecting your Pi to a network.
+2. **Locale**  
+   This changes things such as your keyboard layout, time zone, interface language, wifi country code and so on. It is not required to change anything here, although it will default to British English and the GB time zone if you don't (this will mean that your time will always be two hours behind)
+3. **Expand filesystem**  
+   This changes the amount of memory that is used for file storage on your SD card. Installing Raspbian using the NOOBS installer will do this automatically, but you will need to do it yourself if you followed a different installation method. Importantly **do not** do this after you have started using the Pi, i.e. creating files and installing programs.
+4. **VNC**  
+   You will not be able to connect to the Pi via VNC until it has been enabled using the config utility. *It is disabled by default*.
+5. **Communication protocols**  
+   Some communications protocols, such as Camera (CSI), SSH, Remote GPIO, SPI, I2C, Serial, and 1-Wire are disabled by default. You can activate them using the config utility. *You will not be able to use any of these protocols from your code until they have been activated here*.
 
 ### Offline config
-1. SSH
-2. WiFi
+In some cases, you may wish to enable some settings before booting up the Raspberry Pi. This is generally required if you want to run your Pi without connecting a screen (also called a headless setup).
+1. **SSH**  
+   If you would like SSH to be enabled without needing to run the `raspi-config` utility, simply copy an empty file called `ssh` onto the boot partition of your SD card. This will enable SSH the next time the Raspberry Pi boots.
+2. **WiFi**  
+   It is generally recommended that you boot the Pi for the first time while it is connected to an ethernet network. When this is not possible, you can pre-configure a wifi connection by doing the following:
+   1. Create a file called `wpa_supplicant.conf` in the boot partition of your SD card
+   2. Edit the file to contain the following:
+   ```
+   network={
+     ssid="your-wifi-network-name"
+     psk="your-wifi-network-password"
+     country=ZA
+     #if wifi network has no password, use the following:
+     key_mgmt=NONE
+     #if using a hidden network, add the following after ssid:
+     scan_ssid=1
+   }
+   ```
 
 ## Software overview
 
@@ -96,3 +124,4 @@ sudo apt-get upgrade
 [pi-labelled]: ../static/images/pi-labelled.png "labelled raspberry pi layout"
 [pi-pinout]: ../static/images/raspberry-pi-pinout.png "raspberry pi pinout"
 [pinout-command]: ../static/images/gpiozero-pinout.png "pinout command screen"
+[raspi-config]: ../static/images/config.png "raspberry pi config utility"
