@@ -108,6 +108,23 @@ In some cases, you may wish to enable some settings before booting up the Raspbe
    ```
 
 ## Software overview
+The Raspbian operating system comes pre-installed with several programs. Here is a list of programs that are installed and a short description of what they are:
+1. **Scratch**  
+   This is a visual programming tool which allows the creation of animations and games using drag and drop. It was developed by MIT and the newest version can be found [here][scratch-mit] (note that the new version only runs in the browser and is slightly different from the version on the Pi).
+2. **Python**  
+   [Python][python] is a general purpose programming langauge that is easy to learn and runs on any platform (Windows, Linux, MacOS). It is a popular language for developing web applications and is also used extensively in machine learning and data science. Python can also be used to program desktop applications and games, although it is usually not the first choice of language to do so.
+
+   It is generally used on the Pi to write programs that interface with the GPIO and even provides an interactive mode that makes understanding and learning what commands do much easier.
+3. **Sonic Pi**  
+   [Sonic Pi][sonic-pi] is an open-source programming environment, designed for creating new sounds with code in a live coding environment. You can use it to make sounds and music using programming.
+4. **Minecraft**  
+   Minecraft is a popular sandbox open world building game. A free version of Minecraft is available for the Raspberry Pi; it also comes with a programming interface. This means you can write commands and scripts in Python code to build things in the game automatically.
+5. **Python Games**  
+   These are examples of games written in Python. The source code for all of the games is available as part of the installation, so you can edit and enhance them or even integrate them with the GPIO.
+6. **Mathematica**  
+   Mathematica is a computational programming tool used in science, maths, computing and engineering first released in 1988. It is proprietary software that you can use for free on the Raspberry Pi and has been bundled with Raspbian and NOOBS since late 2013.
+7. **Wolfram**  
+   The Wolfram Language is a general multi-paradigm computational communication languagedeveloped by Wolfram Research and is the programming language of the mathematical symbolic computation program Mathematica and the Wolfram Programming Cloud. It emphasizes symbolic computation, functional programming, and rule-based programming and can employ arbitrary structures and data.
 
 ## Hardware overview
 
@@ -116,6 +133,9 @@ In some cases, you may wish to enable some settings before booting up the Raspbe
 [etcher]: https://www.balena.io/etcher/
 [sd-formatter]:  https://www.sdcard.org/downloads/formatter/index.html
 [interactive-pinout]: https://pinout.xyz/
+[scratch-mit]: https://scratch.mit.edu/
+[python]: https://python.org
+[sonic-pi]: https://projects.raspberrypi.org/en/projects/getting-started-with-sonic-pi
 
 [raspberries]: ../static/images/raspberries.png "four raspberries"
 [noobs-install]: ../static/images/install.png "noobs install screen"
