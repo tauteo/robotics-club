@@ -12,7 +12,7 @@ There are several options of operating systems available to run on the Raspberry
 5. LibreELEC (just enough Linux for Kodi...)
 ...and many more
 
-We will be using Raspbian, which is based on the Debian distrubution of Linux. The current version of Raspbian is named "Strectch".
+We will be using Raspbian, which is based on the Debian distrubution of Linux. The current version of Raspbian is named "Stretch".
 
 ### OS download options
 There are three main "versions" (or rather version configurations) available for Raspbian:
