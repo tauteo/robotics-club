@@ -56,7 +56,15 @@ In order to load the OS image onto the SD card, you can follow one of two method
 11. The Raspbian desktop will appear after some time
 ![raspbian desktop][pi-desktop]
 
-### Updates
+### Installing and updating packages
+From time to time it will be necessary to upgrade either the operating system or the software packages installed. You may also want to install new software packages (e.g. vnc-server, samba etc.). In order to do this, you will have to use the `apt-get` utility as follows:
+```bash
+sudo apt-get update
+sudo apt-get upgrade
+```
+
+`sudo apt-get update` will update the local package manifest by downloading the latest manifest from a distribution repository. This will not actually update any applications.  
+`sudo apt-get upgrade` will compare the installed version of all software packages with the latest version in the local manifest. It will then download and install any newer versions that are available from the distribution repository.
 
 ## Configuration
 ### Using the built in utility
@@ -78,6 +86,7 @@ In order to load the OS image onto the SD card, you can follow one of two method
 [noobs-downloads]: https://www.raspberrypi.org/downloads/noobs/
 [etcher]: https://www.balena.io/etcher/
 [sd-formatter]:  https://www.sdcard.org/downloads/formatter/index.html
+[interactive-pinout]: https://pinout.xyz/
 
 [raspberries]: ../static/images/raspberries.png "four raspberries"
 [noobs-install]: ../static/images/install.png "noobs install screen"
