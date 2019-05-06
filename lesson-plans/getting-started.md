@@ -70,7 +70,8 @@ sudo apt-get upgrade
 ### Using the built in utility
 The Raspberry Pi has a built-in configuration utility. This utility is used to make certain configuration tasks, such as configuring vnc, i2c, camera etc. easier.
 The configuration utility is accessed by either running the graphical interface from the desktop or running the command-line utility.
-The graphical interface can be accessed from `Start->Preferences->Raspberry Pi Configuration`. ![config utility][raspi-config]
+The graphical interface can be accessed from `Start->Preferences->Raspberry Pi Configuration`.  
+![config utility][raspi-config]
 
 The command-line utility can be accessed by typing `sudo raspi-config` into the terminal.
 
