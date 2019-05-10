@@ -19,8 +19,9 @@ There are three main "versions" (or rather version configurations) available for
 1. Raspbian with desktop and recommended software (i.e. Python, Scratch, Sonic Pi, Java, etc.)
 2. Raspbian with desktop
 3. Raspbian Lite (without desktop, i.e. command line only)
+4. Raspberry Pi Desktop (to run as a live disc or virtual machine)
 
-I recommend that you download option 1 [here][raspi-downloads]
+I recommend that you download option 1 [here][raspi-downloads] to run on a Raspberry Pi. Alternatively, you can download option 4 to follow along without a Raspberry Pi.
 
 ### Installing an OS
 In order to load the OS image onto the SD card, you can follow one of two methods.
@@ -54,6 +55,13 @@ In order to load the OS image onto the SD card, you can follow one of two method
 10. Click OK  
 ![noobs install complete][noobs-installed]
 11. The Raspbian desktop will appear after some time
+![raspbian desktop][pi-desktop]
+
+**Running a virtual machine:**
+1. Download the "Debian Stretch with Raspberry Pi Desktop" .iso file [here][raspi-desktop]
+2. Download VMWare Workstation Player [here][vmware-player] and install it
+3. Create a new virtual machine in Workstation Player and select the .iso image you downloaded in step 1
+4. Complete the installation and make sure that the Raspbian desktop appears
 ![raspbian desktop][pi-desktop]
 
 ### Installing and updating packages
@@ -160,6 +168,8 @@ The numbers on these pinouts use the BCM order and can be used directly to addre
 [scratch-mit]: https://scratch.mit.edu/
 [python]: https://python.org
 [sonic-pi]: https://projects.raspberrypi.org/en/projects/getting-started-with-sonic-pi
+[raspi-desktop]: https://www.raspberrypi.org/downloads/raspberry-pi-desktop/
+[vmware-player]: https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html
 
 [raspberries]: ../static/images/raspberries.png "four raspberries"
 [noobs-install]: ../static/images/install.png "noobs install screen"
