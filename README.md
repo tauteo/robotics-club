@@ -65,4 +65,4 @@ The lessons are divided into the following sections:
 Each topic has it's own plan under [lesson-plans][lessons] . The plans are added and updated as needed.
 
 [verified-peripherals]: https://elinux.org/RPi_VerifiedPeripherals
-[lessons]: ./lesson-plans/getting-started.md
+[lessons]: ./lesson-plans/
