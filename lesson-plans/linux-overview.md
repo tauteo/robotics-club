@@ -239,9 +239,80 @@ As humans, we are not that interested in the block availability, but rather the 
 
 Even if one partition is completely full (which will not allow you to write any new data to that partition), the other partitions will still have space and will continue to operate normally. In addition to this benefit, partitions are also used to manage security (e.g. do not allow any programs on a certain partition to execute), to separate mount points to different hard drives, and to manage the amount of space that is available to a certain user.
 
-### Users and access restrictions
-### Reading the manual
 ### Combining instructions
+There are a couple of ways to combine commands in linux, but we must first learn about a very useful command called `grep` (which stands for "global regular expression print"). The `grep` command basically scans through text input and only returns things that match a supplied pattern. This will help us to make sense of the results we get when combining commands.
+
+Let us say that we want to keep track of all of the commands that we have learnt so far. We can create a file called `commands` and write the names of all of the commands in the file. Something like this:
+```bash
+#create the file and open the editor at the same time
+pi@raspberry:~/programs $ nano commands
+#enter the known commands using the nano editor
+#.
+#.
+#.
+#print out the contents
+pi@raspberry:~/programs $ cat commands
+whoami
+pwd
+touch
+ls
+cd
+mkdir
+rm
+rmdir
+groups
+man
+pi@raspberry:~/programs $ 
+```
+
+If we only want to see the commands that have the letter 'd' somewhere in them, we can use the `grep` command thus:
+```bash
+#only return the commands that have the letter 'd' in them
+pi@raspberry:~/programs $ grep d commands
+pwd
+cd
+mkdir
+rmdir
+pi@raspberry:~/programs $ 
+```
+
+The first way of combining two commands is by using the pipe `|` character. The pipe connects the output of one command to the input of the following command, like so:
+```bash
+pi@raspberry:~/programs $ ls /bin | grep d
+```
+The first command will list the names of all of the files in `/bin`. This list is then piped (connected) to the `grep` command, which reads through it and filters out the entries which don't have the letter 'd' in them.
+
+The `grep` command (and most other commands) can also be used with the wildcard characters if you are unsure about the input. The `?` wildcard means "any one character", whereas the `*` wildcard means "any number of characters". We can use them as follows:
+```bash
+#list all commands in /bin that start with 'l' and are only two characters long
+pi@raspberry:~/programs $ ls /bin/l?
+/bin/ln   /bin/ls
+pi@raspberry:~/programs $ 
+#list all commands in /bin that start with 'l' and are any length
+pi@raspberry:~/programs $ ls /bin/l*
+/bin/launchctl    /bin/link   /bin/ln   /bin/ls
+pi@raspberry:~/programs $ 
+```
+
+The second way of combining commands is with the redirection `>` character. The redirection changes where the output of a command goes, so instead of printing the results to a terminal we can instead redirect it to a file (or some other destination). This works as follows:
+```bash
+#take the output of the grep command and redirect it to a file called d-commands.txt
+pi@raspberry:~/programs $ grep d commands > d-commands.txt
+pi@raspberry:~/programs $ cat d-commands.txt
+pwd
+cd
+mkdir
+rmdir
+pi@raspberry:~/programs $ 
+```
+
+The third way of combining commands is to use logical combinators, i.e. `&&` (AND operation) and `||` (OR operation). These can be used as follows:
+```bash
+#make a new directory and if it is successful, change directory into the new directory
+pi@raspberry:~/programs $ mkdir notes && cd notes
+#try to delete a directory and if it fails, try to force delete the directory
+pi@raspberry:~/programs $ rmdir notes || rm -rf notes
+```
 ### Process management
 
 [kernel-arch]: ../static/images/linux-kernel-architecture.png "linux kernel architecture"
