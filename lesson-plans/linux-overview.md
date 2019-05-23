@@ -232,6 +232,13 @@ pi@raspberry:~/programs $
 ```
 
 ### Partitions
+Partitions are separations in the files system that prevent problems in one section from affecting normal operation in another section. You can use the `df` (disk filesystems) command to see information about the different partitions on your machine. This information will include the partition name,  the number of blocks, the number of used blocks, the number of available blocks, the percentage space used, and the mount point for the partition. 
+
+As humans, we are not that interested in the block availability, but rather the size (in bytes) availability. We therefore usually use the `-h` (human readable) option with the `df` command (thus giving `df -h`). This should result in something similar to the image below:
+![calling df][df-result]
+
+Even if one partition is completely full (which will not allow you to write any new data to that partition), the other partitions will still have space and will continue to operate normally. In addition to this benefit, partitions are also used to manage security (e.g. do not allow any programs on a certain partition to execute), to separate mount points to different hard drives, and to manage the amount of space that is available to a certain user.
+
 ### Users and access restrictions
 ### Reading the manual
 ### Combining instructions
