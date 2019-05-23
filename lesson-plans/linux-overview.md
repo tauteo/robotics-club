@@ -73,7 +73,11 @@ The second shortcut is called `..` and it means the parent directory or the dire
 If you get lost on the path, then simply return to the root `/` or return to your home directory, which can be accessed with the short cut `~`.
 
 ### File types
-### File descriptors
+As mentioned previously, everything in linux is represented with a file. A file simply means anything that stores information, whether that be information on other files and directories (which is what a directory is), bytes and information (a "regular" file) or access to a stream of data (like a network connection).
+
+Most files actually contain information that is stored as bytes that have no special meaning to humans, but which have a very specific meaning to the computer. These files are called binary files (e.g. compiled programs, a music file and so on). Some files do contain information that is meaningful to humans, usually in the form of text (e.g. config files, reports etc.).
+
+You can see that files in linux are slightly different to how you used to think of a file in Windows. Another difference is that files in linux do not require an extension (e.g. the `.py` part in `blink.py`). Extensions are only used as conventions and maintain some sanity, but do not restrict the use of the file at all. Some conventions are to label Python files with the `.py` extension, C files with the `.c` extension, configuration files with the `.conf` extension and so on.
 
 ## Terminal commands
 ### Moving around
