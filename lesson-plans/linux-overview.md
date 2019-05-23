@@ -141,7 +141,96 @@ pi@raspberry:~/programs $
 ```
 
 ### Working with files
-### The shell
+As soon as you are comfortable moving around the filesystem, you can try to make new files and directories. For files, this is achieved by using the `touch` command. For directories, the command is `mkdir` (short for "make directory").
+
+```bash
+#creating a file
+pi@raspberry:~/programs $ touch blink.py
+pi@raspberry:~/programs $ ls
+blink.py
+pi@raspberry:~/programs $ 
+
+#creating a directory
+pi@raspberry:~/programs $ mkdir notes
+pi@raspberry:~/programs $ ls
+blink.py notes
+pi@raspberry:~/programs $ 
+```
+
+We can now edit the file we just created with the `nano` command. This asks the shell to run the "nano" program, which is a very basic text editor. The `nano` command is different to the other commands in the sense that it is an interactive command, meaning that the program waits for additional input from you before it completes.
+```bash
+pi@raspberry:~/programs $ nano blink.py
+```
+Running this command opens the nano editor, which looks like this:
+![nano][nano-editor]
+You can save the file using `Ctrl + O` and `Enter`. Then exit with `Ctrl + X`, which will bring you back to the terminal.
+
+This is obviously not a very nice way of editing a file as it does not provide any syntax highlighting or command completion. We will look into better ways of editing files later on.
+
+We can display the contents of the file directly on the terminal by using the `cat` command. This prints out the entire contents of the file in one go, which is not very nice if there is a lot of stuff in the file (there will be a lot of scrolling).
+```bash
+pi@raspberry:~/programs $ cat blink.py
+print("hello world")
+pi@raspberry:~/programs $ 
+```
+
+Two alternative commands to print out file contents are `less` and `more`, both of which support *paging*. This displays the contents of the file one page (screen height) at a time. The `less` command is the preferred command, as it has more functionality (less is more...). You can use the arrow keys to move up and down, as well as the space bar to scroll a whole page. Press `q` to exit and return to the terminal.
+```bash
+pi@raspberry:~/programs $ less blink.py
+```
+![less command][less-viewer]
+
+Simply creating a file may not be enough. Rather than duplicating file contents, it is most often easier to simply copy the contents of a file to a new file. This is achieved using the `cp` command. 
+
+The `cp` command introduces a second "argument" to a command. Up to now we have been writing the command name, followed by the argument or target of the command. Copy has the format `cp [source] [destination]`.
+```bash
+pi@raspberry:~/programs $ cp blink.py also-blink.py
+pi@raspberry:~/programs $ ls
+blink.py also-blink.py
+pi@raspberry:~/programs $ 
+```
+
+If you would rather move the file to a new destination, then use the `mv` command. The `mv` command is also used to rename files.
+```bash
+pi@raspberry:~/programs $ mkdir backups
+pi@raspberry:~/programs $ mv also-blink.py backups
+pi@raspberry:~/programs $ ls
+blink.py
+pi@raspberry:~/programs $ ls backups
+also-blink.py
+pi@raspberry:~/programs $ 
+```
+
+It is important to note that the arguments to these commands can be any file path. In other words, either the first or the second argument (or both) can be a path name written as an absolute or relative path.
+
+Making a lot of files can obviously result in some clutter which makes it difficult to find what you are looking for. You can delete unwanted files using the `rm` command, but be careful as there is no recycle bin in linux and files deleted using `rm` are gone forever.
+```bash
+pi@raspberry:~/programs $ rm blink.py
+pi@raspberry:~/programs $ ls
+backups
+pi@raspberry:~/programs $ 
+```
+Using `rm` on a directory will not work. It will simply print an error:
+```bash
+pi@raspberry:~/programs $ rm backups
+rm: cannot remove 'backups/': Is a directory
+pi@raspberry:~/programs $ 
+```
+To delete a directory, we must use the `rmdir` command (but this will only work on empty directories):
+```bash
+pi@raspberry:~/programs $ rmdir backups
+rmdir: failed to remove 'backups': Directory not empty
+pi@raspberry:~/programs $ 
+```
+
+In order to be able to delete a non-empty directory (this means deleting the directory and **EVERYTHING** in it forever), we need to introduce the concept of command options. Options are additional parameters supplied to the command that change the behaviour of the command. There is thus always the default behaviour of the command (without any options) and then optional behaviour that can be switched on or off depending on the options given when you ask the shell to run the command.
+
+An option is always identified by the dash `-` character, followed by one or more characters denoting the required option. In this manner, we can specify the `r` (recursive) and `f` (force) options when running the `rm` command (which will give us `rm -rf`). This basically means that we are asking the shell to run the `rm` command for each and every file and subdirectory in the directory we are trying to delete (thus deleting everything in turn) and to force the deletion even if we get errors and warnings. Here is an example:
+```bash
+pi@raspberry:~/programs $ rm -rf backups
+pi@raspberry:~/programs $ 
+```
+
 ### Partitions
 ### Users and access restrictions
 ### Reading the manual
