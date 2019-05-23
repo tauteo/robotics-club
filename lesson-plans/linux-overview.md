@@ -361,7 +361,26 @@ So far we have a basic understanding of how to move around the file system and i
 
 The `man` command will print documentation for the command to the terminal and will usually cover basic usage of the command, describe what the command does, and describe each option and how to use it. In addition, the man page will also tell you which commands are related to this one.
 
-### Process management
+## Process management
+Whenever you execute a command, you start a process. A process is an action that is allocated system resources (such as CPU time, RAM, IO, etc.) by the operating system in order to complete a certain task. Some processes execute and return a result almost immediately (e.g. `ls`), whereas other processes stay running until you ask them to stop (e.g. `nano`).
+
+You can see which processes are currently running by issuing the `ps` (process) command. This will return a list of processes and information about these processes. 
+
+The most important piece of information returned is the PID or Process ID. This is a number that uniquely represents that specific process and can be used to interact with and control the process itself (which is different to interacting with the command that is running in the process).
+
+In addition to the processes that you start by executing commands in the shell, there are also many system processes that are stopped and started automatically by the operating system and run in the background.
+
+The `ps` command alone will only list active processes. In order to see all processes (including those that have been stopped temporarily), we need to use the `-a` option. In order to see the system processes, we need to use the `-x` option. Finally, in order to see the names of the system processes, we need to use the `-u` option. By combining all of the options, we arrive at the most commonly used form of the `ps` command, which is `ps -aux`. The output of this command can be fairly long, too long to include here.
+
+Although the `ps` command is useful, it only returns a static list of processes. If we want to see additional information like CPU and RAM usage, we need to use the `top` command. This returns a dynamically updated list of processes (which changes as processes are stopped and started, and even when CPU or RAM usage changes). This is rather like using the Task Manager in Windows.
+
+**Stopping processes**  
+It may happen at some point that a process hangs or crashes, in which case we may want to forcibly stop the process. In this case we can use the `kill` command, which takes a PID as an argument, e.g. `kill 123`. We can also force a process to exit by using the `-9` option, which would then give us the command `kill -9 123`.
+
+In order to illustrate this, we need to know how to run a process in the background. This is easily achieved by appending the `&` character to a command, like so `top &`. Running a process like this will return a job number (e.g. `[1]`) and a PID. If we run another process in the background, like `nano &`, it will return an incremented job number (i.e. `[2]` in this case) as well as another PID. You can view the jobs you have running in the background by simply using the `jobs` command.
+
+You can return the process to the *foreground* by using the `fg` command.
+
 
 [kernel-arch]: ../static/images/linux-kernel-architecture.png "linux kernel architecture"
 [filesys-structure]: ../static/images/linux-file-system.jpg "linux file system structure"
