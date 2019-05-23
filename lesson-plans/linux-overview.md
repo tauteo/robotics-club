@@ -80,6 +80,29 @@ Most files actually contain information that is stored as bytes that have no spe
 You can see that files in linux are slightly different to how you used to think of a file in Windows. Another difference is that files in linux do not require an extension (e.g. the `.py` part in `blink.py`). Extensions are only used as conventions and maintain some sanity, but do not restrict the use of the file at all. Some conventions are to label Python files with the `.py` extension, C files with the `.c` extension, configuration files with the `.conf` extension and so on.
 
 ## Terminal commands
+Up to now, the discussion has been rather abstract and you have not really seen anything which you can use to control a linux system. That changes shortly.
+
+We will begin by learning commands that allow us to move around the file system. We will then move on to working with files (i.e. create, read, edit, delete). Later on we will discuss how to create and manage users and access to files, as well as how to get help if you are stuck with a command. Finally, we will learn how to identify and manage processes.
+
+But first, a short introduction to the shell is needed.
+### The shell
+The shell is the outermost layer of any linux system. It is a program that can read commands typed in plain (well, somewhat plain) language and translate it into commands that the system understands.
+
+All shell commands are typed into the terminal, which is itself a program that allows interaction with the shell using a keyboard and a screen.
+
+The input to a terminal is usually identified by your username, the directory you are currently in and the prompt (which is normally the symbol `$`, but can be any of the symbols `>`, `%`, `#`). A prompt in a terminal usually looks like the following:
+![raspberry pi terminal][raspi-terminal]
+
+The commands that you type into the terminal are usually the names of programs to run. The shell then runs the program and then displays the output of the program on the terminal. After the output is displayed, the terminal then displays the prompt again.
+
+In addition to running commands that you type into the terminal, the shell does some other things as well. Some of the most useful are:
+1. **Keeping history**  
+   The shell keeps a history of all of the commands that you enter into the terminal. You can view the history by typing `history` into the terminal (i.e. running the `history` command). You can also view previous commands by cycling through them with the up and down arrow keys.
+2. **Command completion**  
+   It is not always necessary to type a command in full as the shell knows which commands are available. It will automatically fill in the command if you start typing the first few characters of the command and then press the `Tab` key. If the letters that you typed so far are too generic (in other words, more than one command starts with that combination), the shell will not know which specific command you want to enter. In this case, you can then press the `Tab` key twice, which will give you a list of available commands starting with the combination you entered (this is useful if you forgot the full command but remember how it started). Command completion also works for file and directory names.
+3. **Environment variables**
+   The shell keeps a list of variables in the background that are used to set up the execution environment for the terminal session. These variables are identified by the `$` sign and an all caps name, e.g. `$SHELL` (which contains the path to the shell executable, this should be `/bin/bash` on the pi). Another important variable is `$PATH`, which contains a list of directories where the shell will look for binaries (compiled programs that can be run from the shell).
+
 ### Moving around
 ### Working with files
 ### The shell
