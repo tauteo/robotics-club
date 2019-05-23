@@ -313,6 +313,49 @@ pi@raspberry:~/programs $ mkdir notes && cd notes
 #try to delete a directory and if it fails, try to force delete the directory
 pi@raspberry:~/programs $ rmdir notes || rm -rf notes
 ```
+## Users and access restrictions
+Access control in linux is separated into three areas called "User", "Group" and "Other" (which just means everyone else). Your username uniquely identifies you as a "User" and any files that you create are "owned" by your username. In addition to this, all users belong to one or more groups, the purpose of which is to group users that share similar functionality together. You can so to which groups you belong by running the `groups` command.
+
+Each file (whether this is a directory, a plain file, a binary file, a device file, or any other type of file) has certain permissions assigned to it. These permissions are called `R` (read), `W` (write), and `X` (execute). They are independently assigned to users, groups, and other, which means that a file has `rwx` permissions for a certain user, `rwx` permissions for a certain group and `rwx` permissions for other.
+
+In order to see which permissions have been assigned to a file, we need to run the `ls` command with the `-l` option (giving `ls -l`). This will give us output like the following:
+![lsl command][lsl-result]
+
+These results can be interpreted in the following way:  
+[**column 1**]    The assigned permissions of the file  
+[**column 2**]    The number of links to the file  
+[**column 3**]    The owner of the file  
+[**column 4**]    The group that the file belongs to  
+[**column 5**]    The size of the file in bytes  
+[**columns 6-8**] The creation date of the file  
+[**column 9**]    The name of the file
+
+The file permissions can be broken up into a further four columns, e.g. `- rwx rwx rwx`, with a `-` in any of the `r`, `w`, or `x` positions signifying that either the user, the group or other does not have that specific permission. The columns are interpreted as follows:
+![file permission groups][ugo-layout]
+
+The first character is used to show the file type. It is usually a `-` for normal files, but can also be a `d` for directories, an `l` for a link, and many others also.
+
+You can add and remove permissions from a file by using the `chmod` (change mode) command with the relevant options. Let us assume that the file permissions for the blink.py file are `-rw-r--r--`, which means that the user has read and write permissions, the group has read permissions, and other also has read permissions.
+```bash
+#give write permission to the group
+pi@raspberry:~/programs $ chmod g+w blink.py
+pi@raspberry:~/programs $ ls -l
+-rw-rw-r--    1   pi  pi  somedate  blink.py
+#take away write permission from the group
+pi@raspberry:~/programs $ chmod g-w blink.py
+pi@raspberry:~/programs $ ls -l
+-rw-r--r--    1   pi  pi  somedate  blink.py
+```
+
+Assigning rights to user (u), group (g), or other (o) is thus a simple case of calling `chmod` with the option `u`, `g`, `o`, or any combination such as `ugo` or `ug`, followed by a `+` to assign or a `-` to remove a permission, and finally the permission itself `r`, `w`, `x`, or any combination such as `rw`.
+
+**The root user**  
+In addition to the registered users (and some other background and maintenance users), there is a special user known as `root`. This user can access any and all files in the system and can run any of the commands available (even the system admin commands in `/sbin`). As mentioned previously, the home directory for this user is `/root`.
+
+In order to execute any commands as the root user, you need to be logged in as the root user. You can do this by logging out and then logging in with the root login, but this quickly becomes tedious. An easier way is to use the `su` (switch user, super user, substitute user) command. This will ask you for the root password and will then switch to the root user. Any commands that you execute after this will be run as the user `root`. You can also switch to any other user by supplying the username after `su`, like so: `su - otheruser`.
+
+In some cases, you may only want to execute one command as `root`. When this is the case, it would be tedious to run `su`, login as `root`, execute the command and then switch back to your own user account. To make this easier, the `sudo` command was introduced. The `sudo` command will only execute one command as root without switching user accounts (it will still prompt for a password of course).
+
 ### Process management
 
 [kernel-arch]: ../static/images/linux-kernel-architecture.png "linux kernel architecture"
