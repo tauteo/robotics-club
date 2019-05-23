@@ -103,9 +103,9 @@ The commands that you type into the terminal are usually the names of programs t
 
 In addition to running commands that you type into the terminal, the shell does some other things as well. Some of the most useful are:
 1. **Keeping history**  
-   The shell keeps a history of all of the commands that you enter into the terminal. You can view the history by typing `history` into the terminal (i.e. running the `history` command). You can also view previous commands by cycling through them with the up and down arrow keys.
+   The shell keeps a history of all of the commands that you enter into the terminal. You can view the history by typing `history` into the terminal (i.e. running the `history` command). You can also view previous commands by cycling through them with the <kbd>up</kbd> and <kbd>down</kbd> arrow keys.
 2. **Command completion**  
-   It is not always necessary to type a command in full as the shell knows which commands are available. It will automatically fill in the command if you start typing the first few characters of the command and then press the `Tab` key. If the letters that you typed so far are too generic (in other words, more than one command starts with that combination), the shell will not know which specific command you want to enter. In this case, you can then press the `Tab` key twice, which will give you a list of available commands starting with the combination you entered (this is useful if you forgot the full command but remember how it started). Command completion also works for file and directory names.
+   It is not always necessary to type a command in full as the shell knows which commands are available. It will automatically fill in the command if you start typing the first few characters of the command and then press the <kbd>tab</kbd> key. If the letters that you typed so far are too generic (in other words, more than one command starts with that combination), the shell will not know which specific command you want to enter. In this case, you can then press the <kbd>tab</kbd> key twice, which will give you a list of available commands starting with the combination you entered (this is useful if you forgot the full command but remember how it started). Command completion also works for file and directory names.
 3. **Environment variables**
    The shell keeps a list of variables in the background that are used to set up the execution environment for the terminal session. These variables are identified by the `$` sign and an all caps name, e.g. `$SHELL` (which contains the path to the shell executable, this should be `/bin/bash` on the pi). Another important variable is `$PATH`, which contains a list of directories where the shell will look for binaries (compiled programs that can be run from the shell).
 
@@ -169,7 +169,7 @@ pi@raspberry:~/programs $ nano blink.py
 ```
 Running this command opens the nano editor, which looks like this:
 ![nano][nano-editor]
-You can save the file using `Ctrl + O` and `Enter`. Then exit with `Ctrl + X`, which will bring you back to the terminal.
+You can save the file using <kbd>ctrl</kbd>+<kbd>o</kbd> and <kbd>enter</kbd>. Then exit with <kbd>ctrl</kbd>+<kbd>x</kbd>, which will bring you back to the terminal.
 
 This is obviously not a very nice way of editing a file as it does not provide any syntax highlighting or command completion. We will look into better ways of editing files later on.
 
@@ -180,7 +180,7 @@ print("hello world")
 pi@raspberry:~/programs $ 
 ```
 
-Two alternative commands to print out file contents are `less` and `more`, both of which support *paging*. This displays the contents of the file one page (screen height) at a time. The `less` command is the preferred command, as it has more functionality (less is more...). You can use the arrow keys to move up and down, as well as the space bar to scroll a whole page. Press `q` to exit and return to the terminal.
+Two alternative commands to print out file contents are `less` and `more`, both of which support *paging*. This displays the contents of the file one page (screen height) at a time. The `less` command is the preferred command, as it has more functionality (less is more...). You can use the arrow keys to move up and down, as well as the <kbd>space</kbd> bar to scroll a whole page. Press <kbd>q</kbd> to exit and return to the terminal.
 ```bash
 pi@raspberry:~/programs $ less blink.py
 ```
