@@ -22,7 +22,7 @@ Direct access to the kernel subsystems is also not possible from the user space.
 ### Structure
 ![linux file system structure][filesys-structure]
 
-The linux file system is built on top of the virtual file system kernel subsystem. As such, it does not start with direct access to physical devices (like C:) like in Windows. Like most file systems, the linux file system is a tree structure.
+The linux file system is built on top of the virtual file system kernel subsystem. As such, it does not start with direct access to physical devices (such as C:) like in Windows. Like most file systems, the linux file system is a tree structure.
 
 Like any tree, the structure starts at the root. This level is indicated simply by `/` (note the forward slash instead of the backslash that is used in Windows). The root directory (also called a folder in Windows) contains all of the base directories that make up the file system. Each base directory is responsible for keeping files related to a specific task (such as configuration, temporary files, programs etc.).
 
@@ -83,7 +83,7 @@ As mentioned previously, everything in linux is represented with a file. A file 
 
 Most files actually contain information that is stored as bytes that have no special meaning to humans, but which have a very specific meaning to the computer. These files are called binary files (e.g. compiled programs, a music file and so on). Some files do contain information that is meaningful to humans, usually in the form of text (e.g. config files, reports etc.).
 
-You can see that files in linux are slightly different to how you used to think of a file in Windows. Another difference is that files in linux do not require an extension (e.g. the `.py` part in `blink.py`). Extensions are only used as conventions and maintain some sanity, but do not restrict the use of the file at all. Some conventions are to label Python files with the `.py` extension, C files with the `.c` extension, configuration files with the `.conf` extension and so on.
+You can see that files in linux are slightly different to how you used to think of a file in Windows. Another difference is that files in linux do not require an extension (e.g. the `.py` part in `blink.py`). Extensions are only used as conventions and to maintain some sanity, but do not restrict the use of the file at all. Some conventions are to label Python files with the `.py` extension, C files with the `.c` extension, configuration files with the `.conf` extension and so on.
 
 ## Terminal commands
 Up to now, the discussion has been rather abstract and you have not really seen anything which you can use to control a linux system. That changes shortly.
@@ -99,7 +99,7 @@ All shell commands are typed into the terminal, which is itself a program that a
 The input to a terminal is usually identified by your username, the directory you are currently in and the prompt (which is normally the symbol `$`, but can be any of the symbols `>`, `%`, `#`). A prompt in a terminal usually looks like the following:
 ![raspberry pi terminal][raspi-terminal]
 
-The commands that you type into the terminal are usually the names of programs to run. The shell then runs the program and then displays the output of the program on the terminal. After the output is displayed, the terminal then displays the prompt again.
+The commands that you type into the terminal are usually the names of programs to run. The shell then runs the program and displays the output of the program on the terminal. After the output is displayed, the terminal then displays the prompt again.
 
 In addition to running commands that you type into the terminal, the shell does some other things as well. Some of the most useful are:
 1. **Keeping history**  
@@ -320,7 +320,7 @@ pi@raspberry:~/programs $ mkdir notes && cd notes
 pi@raspberry:~/programs $ rmdir notes || rm -rf notes
 ```
 ## Users and access restrictions
-Access control in linux is separated into three areas called "User", "Group" and "Other" (which just means everyone else). Your username uniquely identifies you as a "User" and any files that you create are "owned" by your username. In addition to this, all users belong to one or more groups, the purpose of which is to group users that share similar functionality together. You can so to which groups you belong by running the `groups` command.
+Access control in linux is separated into three areas called "User", "Group" and "Other" (which just means everyone else). Your username uniquely identifies you as a "User" and any files that you create are "owned" by your username. In addition to this, all users belong to one or more groups, the purpose of which is to group users that share similar functionality together. You can see which groups you belong to by running the `groups` command.
 
 Each file (whether this is a directory, a plain file, a binary file, a device file, or any other type of file) has certain permissions assigned to it. These permissions are called `r` (read), `w` (write), and `x` (execute). They are independently assigned to users, groups, and other, which means that a file has `rwx` permissions for a certain user, `rwx` permissions for a certain group and `rwx` permissions for other.
 
@@ -353,7 +353,7 @@ pi@raspberry:~/programs $ ls -l
 -rw-r--r--    1   pi  pi  somedate  blink.py
 ```
 
-Assigning rights to user (u), group (g), or other (o) is thus a simple case of calling `chmod` with the option `u`, `g`, `o`, or any combination such as `ugo` or `ug`, followed by a `+` to assign or a `-` to remove a permission, and finally the permission itself `r`, `w`, `x`, or any combination such as `rw`.
+Assigning rights to user (u), group (g), or other (o) is thus a simple case of calling `chmod` with the argument `u`, `g`, `o`, or any combination such as `ugo` or `ug`, followed by a `+` to assign or a `-` to remove a permission, and finally the permission itself `r`, `w`, `x`, or any combination such as `rw`.
 
 **The root user**  
 In addition to the registered users (and some other background and maintenance users), there is a special user known as `root`. This user can access any and all files in the system and can run any of the commands available (even the system admin commands in `/sbin`). As mentioned previously, the home directory for this user is `/root`.
@@ -372,7 +372,7 @@ Whenever you execute a command, you start a process. A process is an action that
 
 You can see which processes are currently running by issuing the `ps` (process) command. This will return a list of processes and information about these processes. 
 
-The most important piece of information returned is the PID or Process ID. This is a number that uniquely represents that specific process and can be used to interact with and control the process itself (which is different to interacting with the command that is running in the process).
+The most important piece of information returned is the PID or Process ID. This is a number that uniquely represents that specific process and can be used to interact with and control the process itself (which is different to interacting with the program that is running in the process).
 
 In addition to the processes that you start by executing commands in the shell, there are also many system processes that are stopped and started automatically by the operating system and run in the background.
 
@@ -387,6 +387,8 @@ In order to illustrate this, we need to know how to run a process in the backgro
 
 You can return the process to the *foreground* by using the `fg` command.
 
+To stop the process, either bring it to the foreground and issue the normal command to close it, or issue the `kill` command (remember that the `kill` command takes the PID as an argument and not the job nr).
+
 ## Package management
 Just like the operating system is modular, so the software programs that you install are also modular. This means that a specific program may use several other programs in order to do its job. These other programs are called the dependencies of the program (because the program *depends* on them to run). Keep in mind that the dependencies may also themselves depend on other programs to do their job.
 
@@ -396,7 +398,7 @@ Each program must include a list of its dependencies in its installation package
 
 Well, every distribution of linux maintains a repository (actually several repositories) of software install packages that is searched by the package manager when it finds that it needs a dependency of which it does not have a local copy. This can actually be a bit slow (especially if the repository server is on the other side of the world), so to improve performance, the package manager will first download an "index" of packages available at a certain repository. It will then search this local index for the dependency package and will then download the package from the repository and install it. This is done for every package in the dependency chain until the original program is also downloaded and installed.
 
-The package manager for Raspbian is called `apt` (since Raspbian is based on Debian, which also uses the `apt` package manager). To use the package manager, you execute the `apt-get` command followed by some options. Take note that modifying existing packages or installing new packages will make changes to the entire system, and as such the commands need to be run as the `root` user (which is achieved by using `sudo`).
+The package manager for Raspbian is called `apt` (since Raspbian is based on Debian, which also uses the `apt` package manager). To use the package manager, you execute the `apt-get` command followed by some arguments. Take note that modifying existing packages or installing new packages will make changes to the entire system, and as such the commands need to be run as the `root` user (which is achieved by using `sudo`).
 
 To update the package index from the repositories, use the following:
 ```bash
