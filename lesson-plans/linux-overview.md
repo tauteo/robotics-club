@@ -39,10 +39,9 @@ The base directories and their functions are listed below:
    Linux exposes devices as files, and this directory contains a number of special files that represent devices. These are not actual files as we know them, but they appear as files. A good example of this is the `/dev/sda` file which represents a physical storage drive connected to the system.
    This directory also contains pseudo devices like `/dev/random` (which produces a random number when read) and `/dev/null` which produces no output and discards all input.
 5. **/home**  
-   This directory contains a subdirectory for each user that is registered on the system. The `pi` user on the Raspberry Pi therefore has a subdirectory called `/home/pi`, which is located here.
-   You will typically place all of the files that you work on here as files created here are only accessible by yourself.
-
-   It is also important to note that a user generally does not have write access to files located elsewhere.
+   This directory contains a subdirectory for each user that is registered on the system. The `pi` user on the Raspberry Pi therefore has a subdirectory called `/home/pi`, which is located here. The current user's home directory is aliased with `~`.
+   
+   You will typically place all of the files that you work on here as files created here are only accessible by yourself. It is also important to note that a user generally does not have write access to files located elsewhere.
 6. **/lib**  
    All of the libraries needed by the programs on the system (i.e. in `/bin` and `/sbin`) are stored here.
 7. **/media**  
