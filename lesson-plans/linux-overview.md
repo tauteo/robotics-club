@@ -24,13 +24,13 @@ Direct access to the kernel subsystems is also not possible from the user space.
 
 The linux file system is built on top of the virtual file system kernel subsystem. As such, it does not start with direct access to physical devices (like C:) like in Windows. Like most file systems, the linux file system is a tree structure.
 
-Like any tree, the structure starts at the root. This level is indicated simply by "/" (note the forward slash instead of the backslash that is used in Windows). The root directory (also called a folder in Windows) contains all of the base directories that make up the file system. Each base directory is responsible for keeping files related to a specific task (such as configuration, temporary files, programs etc.).
+Like any tree, the structure starts at the root. This level is indicated simply by `/` (note the forward slash instead of the backslash that is used in Windows). The root directory (also called a folder in Windows) contains all of the base directories that make up the file system. Each base directory is responsible for keeping files related to a specific task (such as configuration, temporary files, programs etc.).
 
 The base directories and their functions are listed below:
 1. **/bin**  
    Contains essential binaries (compiled programs) that are necessary for the system to work. This includes programs that for example list file contents, change file ownership, mount new file systems and so on
 2. **/sbin**  
-    This directory is similar to the `/bin` directory in the sense that it contains compiled programs (i.e. binaries). The difference is that all programs intended to be run by the "root" user for system administration are placed here.
+    This directory is similar to the `/bin` directory in the sense that it contains compiled programs (i.e. binaries). The difference is that all programs intended to be run by the `root` user for system administration are placed here.
 2. **/boot**  
    This contains static files needed to boot up the system, such as the `initd` file which specifies in which order programs need to be started after booting and what resources need to be available before these programs can be started.
 3. **/etc**  
@@ -53,7 +53,7 @@ The base directories and their functions are listed below:
 9. **/opt**  
     This contains subdirectories for optional software that is installed by the user and which doesn't follow the standard file system hierarchy.
 10. **/root**  
-    This is the home directory for a special user called "root" (different to the file system root `/`). The "root" user has special access to all system files (but not to necessarily to user files).
+    This is the home directory for a special user called `root` (different to the file system root `/`). The `root` user has special access to all system files (but not to necessarily to user files).
 11. **/usr**  
     All applications and files used by users (as opposed to being used by the system) are placed here. In other words, programs located here are deemed to be non-essential.
 
@@ -322,7 +322,7 @@ pi@raspberry:~/programs $ rmdir notes || rm -rf notes
 ## Users and access restrictions
 Access control in linux is separated into three areas called "User", "Group" and "Other" (which just means everyone else). Your username uniquely identifies you as a "User" and any files that you create are "owned" by your username. In addition to this, all users belong to one or more groups, the purpose of which is to group users that share similar functionality together. You can so to which groups you belong by running the `groups` command.
 
-Each file (whether this is a directory, a plain file, a binary file, a device file, or any other type of file) has certain permissions assigned to it. These permissions are called `R` (read), `W` (write), and `X` (execute). They are independently assigned to users, groups, and other, which means that a file has `rwx` permissions for a certain user, `rwx` permissions for a certain group and `rwx` permissions for other.
+Each file (whether this is a directory, a plain file, a binary file, a device file, or any other type of file) has certain permissions assigned to it. These permissions are called `r` (read), `w` (write), and `x` (execute). They are independently assigned to users, groups, and other, which means that a file has `rwx` permissions for a certain user, `rwx` permissions for a certain group and `rwx` permissions for other.
 
 In order to see which permissions have been assigned to a file, we need to run the `ls` command with the `-l` option (giving `ls -l`). This will give us output like the following:
 ![lsl command][lsl-result]
