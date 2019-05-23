@@ -1,5 +1,12 @@
 # An overview of Linux
 
+## Introduction
+This is not a comprehensive overview of everything in linux. It is a somewhat abbreviated introduction to the core components of linux that you need to be able to use the operating system meaningfully. As such, it covers topics in only enough detail to allow you to understand how it works and why it is there.
+
+The best way to learn remains actual use, and therefore the more you use linux, the more you will become confident in using it. If you only use it occasionally, then you will learn slowly.
+
+You should not have to read everything in here in sequence or in one sitting. Feel free to jump around to the sections you are interested in and use the others as a reference.
+
 ## Kernel structure
 ![kernel architecture][kernel-arch]
 
