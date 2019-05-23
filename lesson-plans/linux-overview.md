@@ -58,7 +58,20 @@ The base directories and their functions are listed below:
     All temporary files are stored here and are typically deleted when the system is restarted or by cleanup programs such as `tmpwatch`.
 14. **/proc**  
     Contains information on running processes.
+
 ### Paths
+File paths are a set of directions that specify where to find the file that you want. As with any set of directions, you can provide them from either a fixed point of reference (e.g. if you start at the mall and drive towards the highway) or from your current position (e.g. from here, take a left to the mall and then continue to the highway).
+
+In linux, the fixed point of reference is always the root `/` of the filesystem. An example of a path specified in this way is `/home/pi/programs/blink.py`. As you can see it starts with the `/`, then adds on a step `/home`. This process is repeated (i.e. `/home/pi`, then `/home/pi/programs`, and finally `/home/pi/programs/blink.py`) until the destination file `blink.py` is reached. This form of specifying a path (providing directions to a file) is called "absolute addressing", as it starts from an absolute point of reference.
+
+The second method of providing directions to a file is called relative addressing (as it is in relation to your current position in the filesystem). In order to use this method effectively, you need two short cuts.
+
+The first short cut is called `.`, it specifies the current directory. An example of this would be if you are already in the `/home/pi` directory and want to navigate to the `blink.py` file in the previous example. Using relative addressing, this can be written as `./programs/blink.py` (you can also use an even shorter route and just write `programs/blink.py`)
+
+The second shortcut is called `..` and it means the parent directory or the directory that contains the current directory. Let's assume that we are in the directory `/home/pi/notes` and that we want to move from there to the `/home/pi/programs` directory. We can write that, in the relative form, as `../programs/blink.py`. Which simply means "go one directory up from where I am currently" (i.e. move from `/home/pi/notes` to `/home/pi`) and then go into the subdirectory called `programs`.
+
+If you get lost on the path, then simply return to the root `/` or return to your home directory, which can be accessed with the short cut `~`.
+
 ### File types
 ### File descriptors
 
