@@ -356,6 +356,11 @@ In order to execute any commands as the root user, you need to be logged in as t
 
 In some cases, you may only want to execute one command as `root`. When this is the case, it would be tedious to run `su`, login as `root`, execute the command and then switch back to your own user account. To make this easier, the `sudo` command was introduced. The `sudo` command will only execute one command as root without switching user accounts (it will still prompt for a password of course).
 
+## Getting help
+So far we have a basic understanding of how to move around the file system and interact with files. There is a lot more to learn, but covering all of the commands in one place is going to be difficult. You can always have a look at which commands are available by running `ls /bin` (also try `/sbin`, `/usr/bin`, `/usr/sbin`, `/usr/local/bin`, and `/usr/local/sbin`). If you want to know what an unfamiliar command does or even what options are available on known commands, you can always use the `man` (manual) command.
+
+The `man` command will print documentation for the command to the terminal and will usually cover basic usage of the command, describe what the command does, and describe each option and how to use it. In addition, the man page will also tell you which commands are related to this one.
+
 ### Process management
 
 [kernel-arch]: ../static/images/linux-kernel-architecture.png "linux kernel architecture"
