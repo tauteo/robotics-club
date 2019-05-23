@@ -104,6 +104,42 @@ In addition to running commands that you type into the terminal, the shell does 
    The shell keeps a list of variables in the background that are used to set up the execution environment for the terminal session. These variables are identified by the `$` sign and an all caps name, e.g. `$SHELL` (which contains the path to the shell executable, this should be `/bin/bash` on the pi). Another important variable is `$PATH`, which contains a list of directories where the shell will look for binaries (compiled programs that can be run from the shell).
 
 ### Moving around
+The first command we will type is the `whoami` command. This asks the shell to run the program of the same name and return the username of the current user.
+```bash
+pi@raspberry:~ $ whoami
+pi
+pi@raspberry:~ $
+```
+
+The next command is very useful if you ever get lost on the filesystem. It is called `pwd`, which is an abbreviation of "print working directory". As you can imagine, it will print the absolute address of the directory that you are in currently.
+```bash
+pi@raspberry:~ $ pwd
+/home/pi
+pi@raspberry:~ $
+```
+
+If you know where you are, then you may want to see what is around you (i.e. which files and directories are contained in your current directory). You can do this with the `ls` command, which is short for "list" but which you can also think of as a Light Switch that turns on the lights and illuminates your surroundings.
+```bash
+pi@raspberry:~/programs $ ls
+blink.py
+pi@raspberry:~ $
+```
+
+Once you know what is around you, you can move around into other directories by using the `cd` (change directory) command
+```bash
+#using relative address
+pi@raspberry:~ $ cd programs
+pi@raspberry:~/programs $
+
+#moving back up
+pi@raspberry:~/programs $ cd ..
+pi@raspberry:~ $
+
+#using absolute addressing
+pi@raspberry:~ $ cd /home/pi/programs
+pi@raspberry:~/programs $
+```
+
 ### Working with files
 ### The shell
 ### Partitions
