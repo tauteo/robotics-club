@@ -381,6 +381,29 @@ In order to illustrate this, we need to know how to run a process in the backgro
 
 You can return the process to the *foreground* by using the `fg` command.
 
+## Package management
+Just like the operating system is modular, so the software programs that you install are also modular. This means that a specific program may use several other programs in order to do its job. These other programs are called the dependencies of the program (because the program *depends* on them to run). Keep in mind that the dependencies may also themselves depend on other programs to do their job.
+
+You can imagine then that installing any program may result in a nightmarish cycle of travelling down the "dependency chain" and installing each dependency in turn before moving up again to install the higher level program. This is something that most people will quickly give up on. Luckily, this is not necessary, as the problem has been automated so that all of this is done for you by a program called a package manager.
+
+Each program must include a list of its dependencies in its installation package. The package manager will then read this list of dependencies and attempt to automatically install each dependency (and sub-dependencies also) in turn until it can install the program you requested. But where will it find the install packages for these dependencies, you may ask? 
+
+Well, every distribution of linux maintains a repository (actually several repositories) of software install packages that is searched by the package manager when it finds that it needs a dependency of which it does not have a local copy. This can actually be a bit slow (especially if the repository server is on the other side of the world), so to improve performance, the package manager will first download an "index" of packages available at a certain repository. It will then search this local index for the dependency package and will then download the package from the repository and install it. This is done for every package in the dependency chain until the original program is also downloaded and installed.
+
+The package manager for Raspbian is called `apt` (since Raspbian is based on Debian, which also uses the `apt` package manager). To use the package manager, you execute the `apt-get` command followed by some options. Take note that modifying existing packages or installing new packages will make changes to the entire system, and as such the commands need to be run as the `root` user (which is achieved by using `sudo`).
+
+To update the package index from the repositories, use the following:
+```bash
+pi@raspberry:~/programs $ sudo apt-get update
+```
+To install a new package, you can use the `install` option like so:
+```bash
+pi@raspberry:~/programs $ sudo apt-get install [package name]
+```
+You can also install multiple packages in one go by again using the `install` option, but then supplying it with a list of packages:
+```bash
+pi@raspberry:~/programs $ sudo apt-get install [package1] [package2] [package3]
+```
 
 [kernel-arch]: ../static/images/linux-kernel-architecture.png "linux kernel architecture"
 [filesys-structure]: ../static/images/linux-file-system.jpg "linux file system structure"
