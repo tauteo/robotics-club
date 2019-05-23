@@ -414,3 +414,9 @@ pi@raspberry:~/programs $ sudo apt-get install [package1] [package2] [package3]
 
 [kernel-arch]: ../static/images/linux-kernel-architecture.png "linux kernel architecture"
 [filesys-structure]: ../static/images/linux-file-system.jpg "linux file system structure"
+[raspi-terminal]: ../static/images/terminal.png "raspberry pi terminal"
+[nano-editor]: ../static/images/nano.png "nano editor"
+[less-viewer]: ../static/images/less.png "less viewer"
+[df-result]: ../static/images/df.png "result of calling the df command"
+[lsl-result]: ../static/images/permissions.PNG "result of calling the ls -l command"
+[ugo-layout]: ../static/images/ugo.png "explanation of file permissions"
