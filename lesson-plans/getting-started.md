@@ -104,10 +104,13 @@ In some cases, you may wish to enable some settings before booting up the Raspbe
    1. Create a file called `wpa_supplicant.conf` in the boot partition of your SD card
    2. Edit the file to contain the following:
    ```
+   country=ZA
+   ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+   update_config=1
+
    network={
      ssid="your-wifi-network-name"
      psk="your-wifi-network-password"
-     country=ZA
      #if wifi network has no password, use the following:
      key_mgmt=NONE
      #if using a hidden network, add the following after ssid:
