@@ -16,6 +16,8 @@
 
 ### File Sharing (Samba)
 
+### VNC
+
 ## Remote Development
 
 ### VS Code Remote
