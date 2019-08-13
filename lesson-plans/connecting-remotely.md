@@ -11,6 +11,27 @@ Running the Pi without a dedicated screen, keyboard, and mouse is called running
 
 ### Overview
 
+There are many ways of connecting to remote computers, none of them specific to the Rapsberry Pi. These methods were developed over time to solve two fundamental problems:
+
+1. How can I execute commands on a remote system?
+2. How can I create a copy of a local file on a remote system?
+
+A third problem was added later, namely, "how can I see the GUI/desktop of a remote system?".
+
+Most methods of connecting remotely solve one of the two problems, and in some cases they solve one problem well and the other partially (and in a limited way). We will therefore discuss both methods that solve the command execution problem, as well as other methods that solve the file transfer problem. We will also briefly discuss remote graphical interfaces, although most of you should be familiar with this already.
+
+The methods we will be covering are as follows:
+
+1. Remote command execution
+   1. SSH
+2. Remote file transfer
+   1. SCP
+   2. FTP
+   3. Git
+   4. Samba
+3. Remote graphical interface
+   1. VNC
+
 ### SSH
 
 ### FTP
