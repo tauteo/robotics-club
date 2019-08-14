@@ -445,3 +445,20 @@ For more information on VS Code Remote, see the [Remote Development using SSH][v
 ---
 
 [official-ssh]:https://www.raspberrypi.org/documentation/remote-access/ssh/README.md
+[winscp-home]:https://winscp.net/eng/index.php
+[winfsp-install]:https://github.com/billziss-gh/winfsp/releases
+[sshfswin-install]:https://github.com/billziss-gh/sshfs-win/releases
+[try-github]:http://try.github.io/
+[git-internals-pdf]:https://github.com/pluralsight/git-internals-pdf
+[visual-git]:http://marklodato.github.io/visual-git-guide/index-en.html
+[think-git]:http://think-like-a-git.net/
+[git-tutorials-medium]:https://medium.com/quick-code/top-tutorials-to-learn-git-for-beginners-622289ffdfe5
+[git-tutorials-repo]:https://gist.github.com/jaseemabid/1321592
+[vnc-viewer]:https://www.realvnc.com/en/connect/download/viewer/
+[raspi-remote-access]:https://www.raspberrypi.org/documentation/remote-access/
+[vscode-insiders]:https://code.visualstudio.com/insiders/
+[win10-ssh]:https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
+[vscode-ssh-config]:https://code.visualstudio.com/docs/remote/troubleshooting#_configuring-key-based-authentication
+[vscode-remote-ssh]:https://code.visualstudio.com/docs/remote/ssh
+
+[vscode-remote-arch]:../static/images/vscode-remote-architecture.png "vscode remote architecture"
