@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Up to now, we have been using the Pi while it is connected to a dedicated screen, keyboard, and mouse. In many cases, this is either not practical or it is simply unnecessary, as the most common use case for a Pi is as an application server. As such, the Pi will mostly be running either dedicated IO programs or it will be running higher level management programs that talk to other remote IO platforms (such as the Arduino).
+Up to now, we have been using the Pi while it is connected to a dedicated screen, keyboard, and mouse. In many cases, this is either not practical or it is simply unnecessary, as the most common use case for a Pi is as an application server. As such, the Pi will mostly be running either dedicated IO programs or it will be running higher level management programs that talk to other remote IO platforms (such as the Arduino).  
 Neihter of these use cases requires a graphical interface that runs directly on the Pi. It would even be preferable to run a graphical interface as a web site, in which case a direct connection is most definitely not needed.
 
 Running the Pi without a dedicated screen, keyboard, and mouse is called running it in "headless" mode. But, if we are not able to interact directly with the Pi, how would we go about creating and running programs on the Pi? This is exactly the question that is answered in this lesson.
@@ -40,7 +40,7 @@ You can also get some basic info about these methods at the [official Raspberry 
 
 #### What is SSH
 
-SSH is short for *Secure SHell*. It is a protocol designed to securely connect to a remote computer over an insecure network (such as the internet). It follows the client-server architecture, which means that one computer must run an ssh server (a program that listens for, and authenticates incoming ssh connections), and the other must run an ssh client (this used to be PuTTY on Windows, but Windows 10 now includes OpenSSH by default).
+SSH is short for *Secure SHell*. It is a protocol designed to securely connect to a remote computer over an insecure network (such as the internet). It follows the client-server architecture, which means that one computer must run an ssh server (a program that listens for, and authenticates incoming ssh connections), and the other must run an ssh client (this used to be PuTTY on Windows, but Windows 10 now includes OpenSSH by default).  
 The client initiates a connection request to the server, which then responds with a request for a username and password. If a correct username and password is then supplied by the client, the server creates a secure connection. The client can then use this secure connection to send commands to the remote computer, **which will execute on the remote computer as if you were logged in directly**.
 
 SSH was created to replace insecure remote shell applications, such as Telnet, rlogin, rsh, etc. It was later extended to also allow for file transfer using SFTP (SSH File Transfer Protocol). In addition to remote command execution, it also allows tunneling, TCP port forwarding, and X11 (remote desktop for linux).
@@ -49,7 +49,7 @@ The SSH protocol communicates over TCP port 22 by default, although it can be co
 
 #### How to use SSH
 
-SSH is installed by default on the Raspberry Pi, although it is also disabled by default for security reasons (due to the commonly known default username and password for the Pi). As discussed in the "Getting Started" lesson, SSH can be enabled by creating an empty file called `ssh` in the root directory of the SD card before booting for the first time. It can also be enabled by using the `raspi-config` command, then selecting the `Interfacing Options` entry and finally selecting `YES` next to `SSH`. Exiting the utility (select `OK` and then `Finish`) will cause the Pi to reboot, upon which SSH will be enabled.
+SSH is installed by default on the Raspberry Pi, although it is also disabled by default for security reasons (due to the commonly known default username and password for the Pi). As discussed in the "Getting Started" lesson, SSH can be enabled by creating an empty file called `ssh` in the root directory of the SD card before booting for the first time. It can also be enabled by using the `raspi-config` command, then selecting the `Interfacing Options` entry and finally selecting `YES` next to `SSH`. Exiting the utility (select `OK` and then `Finish`) will cause the Pi to reboot, upon which SSH will be enabled.  
 It is important that the default password **must be changed** when enabling SSH, especially if you are planning on connecting your Pi to the internet. The default password for the `pi` user is commonly known and if it is not changed, it will allow *anyone* to access you Pi via SSH (as long as they also know your Pi's IP address).
 
 You can find more information on enabling SSH in the official Raspberry Pi [SSH documentation][official-ssh]
@@ -57,6 +57,7 @@ You can find more information on enabling SSH in the official Raspberry Pi [SSH 
 ##### Setting up a connection
 
 In order to connect to a remote computer using SSH, you need three things. These are the IP address of the remote system, the username of a valid user on the remote system, and the password of the remote user. You also need to be connected to the same network as the remote system (i.e. the remote system must be "reachable" from your local system)
+
 The IP address of a Raspberry can be found using the `hostname` command, which will print the IP address on the next line, like so:
 
 ```bash
@@ -79,7 +80,7 @@ As mentioned previously, the OpenSSH client is now installed by default in Windo
 
 ##### Connecting without a password
 
-SSH uses public-private key encryption in order to secure the connection between the local and the remote system. This means that the client side of the connection has a private and a public key pair, and an identity associated with this key pair. Each message is encrypted using the public key, but can only be decrypted by the private key.
+SSH uses public-private key encryption in order to secure the connection between the local and the remote system. This means that the client side of the connection has a private and a public key pair, and an identity associated with this key pair. Each message is encrypted using the public key, but can only be decrypted by the private key.  
 When authenticating an SSH connection with a password, such a public-private key pair (with an associated identity) is automatically generated and used for the duration of the connection. It is discarded after the connection is closed and a new key pair will be generated when a new connection is established.
 
 It is also possible to manually generate a public-private key pair on the local system and then store this key on the remote system in some way. When the local system (client) attempts to connect to a remote system (server) where the client's public key had been previously stored, the SSH server compares the identity associated with the stored key to the identity associated with the connection key. If the identities match, then the connection is allowed, otherwise it is rejected.
@@ -115,7 +116,7 @@ The public key is usually stored at `%USERPROFILE%\.ssh\id_rsa.pub`. If you do n
    ssh-keygen -t rsa -b 4096
    ```
 
-   this will generate the `~/.ssh/id_rsa.pub` file with the new key inside
+   this will generate the `~/.ssh/id_rsa.pub` file with a new key inside
 2. Then copy the public key to the remote system
 
    ```bash
