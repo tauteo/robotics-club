@@ -210,6 +210,42 @@ You should now be able to transfer files to and from the Raspberry Pi using an F
 
 ### SCP
 
+SCP (Secure Copy Protocol) is a protocol that is based on SSH, but which is designed for secure file transfer between two hosts (local<->remote, remote<->remote). As it uses SSH for the actual transfer, it is secured using the same method as SSH.
+
+Copying files to another system is easy and follows the basic format `scp <sourcefile> <user>@<host>:[directory]<destinationfile>`. For example:
+
+```bash
+# copying blink.py from local computer to ~/projects/ directory on remote computer
+# the projects/ directory must exist on the remote computer
+scp blink.py pi@192.168.0.1:projects/
+```
+
+Copying files from another system is simply the reverse (`scp <user>@<host>:[directory]<sourcefile> <destiniationfile>`):
+
+```bash
+# copy ~/projects/blink.py from remote computer to current directory on the local computer
+scp pi@192.168.0.1:projects/blink.py .
+```
+
+You can also copy multiple files at once:
+
+```bash
+# copy files file1.txt and file2.txt to pi user's home directory
+scp file1.txt file2.txt pi@192.168.0.1:
+# copy all files ending in .txt
+scp *.txt pi@192.168.0.1:
+# copy all files starting with 'm'
+scp m* pi@192.168.0.1:
+# copy all files starting with 'm' and with extension .txt
+scp m*.txt pi@192.168.0.1:
+```
+
+Filenames with spaces need to be wrapped in quotation marks `"`:
+
+```bash
+scp "my file.txt" pi@192.168.0.1:
+```
+
 ### Git
 
 ### File Sharing (Samba)
