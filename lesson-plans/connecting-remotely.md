@@ -246,6 +246,11 @@ Filenames with spaces need to be wrapped in quotation marks `"`:
 scp "my file.txt" pi@192.168.0.1:
 ```
 
+### SFTP
+
+SFTP (SSH File Transfer Protocol) provides file access, file transfer and file management over SSH. It is easier to set up than FTP, especially if SSH is already enabled.  
+The easiest way to use SFTP is with the [WinSCP][winscp-home] client. This client will allow you to browse and transfer files, to and from, the Raspberry Pi using a username and password or using the public key setup described in the SSH section.
+
 ### Git
 
 ### File Sharing (Samba)
