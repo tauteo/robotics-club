@@ -427,6 +427,21 @@ At the moment, there is only experimental support for Linux on ARMv7 (Raspberry 
 
 #### Installation
 
-#### Use
+To install VS Code follow the instructions for downloading and installing the [insiders release][vscode-insiders].
+
+If SSH is not enabled on your Windows 10 installation, then follow the instructions for [enabling OpenSSH in Windows 10][win10-ssh] and install OpenSSH client.
+
+After installing VS Code Insiders and making sure that SSH is enabled, install the Remote Development extension pack.
+
+The Remote extension requires SSH key based authentication to work. You can follow the instructions under the section [SSH -> How to use SSH -> Connecting without a password -> Windows](#windows) in order to set up key based authentication with your Pi, or you can visit the [VS Code website][vscode-ssh-config] for more detailed instructions.  
+Once this is set up, run the command `Remote-SSH:Connect to Host` from the Command Palette (<kbd>F1</kbd>) and enter the `<user>@<host>` combination for your Pi. VS Code will then attempt to establish an SSH connection with the Pi and install the server component on the Pi.
+
+When the SSH connection has been established and the server component installed, VS Code will present you with an empty window. You can then proceed to open any folder or workspace on the Pi from within VS Code. You can also open the integrated terminal in VS Code in order to automatically open a remote terminal on the Pi.
+
+You will also be able to install extensions while in remote mode. Compatible extensions will be installed on the Raspberry Pi itself, while other extensions will be installed on the local machine.
+
+For more information on VS Code Remote, see the [Remote Development using SSH][vscode-remote-ssh] webpage.
+
+---
 
 [official-ssh]:https://www.raspberrypi.org/documentation/remote-access/ssh/README.md
