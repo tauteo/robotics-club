@@ -420,7 +420,10 @@ VS Code is available for download, completely for free, and can run on Windows, 
 
 ### VS Code Remote
 
-#### Prerequisites
+![Architecture of the VS Code Remote extension][vscode-remote-arch]
+
+The VS Code Remote extension uses SSH as a tunnel through which to communicate between the local editor and a remote server program that is installed on the Raspberry Pi (or any remote Linux machine, WSL instance, or Docker container). It also requires an OpenSSH compatible client to be installed on the local machine (which Windows 10 has by default and is installable on Linux and MacOS).  
+At the moment, there is only experimental support for Linux on ARMv7 (Raspberry Pi 2) and ARMv8 (Raspberry Pi 3B+), but it is quite stable enough to use. The experimental support does require that we use the insiders build of VS Code (which is also stable enough for general use).
 
 #### Installation
 
