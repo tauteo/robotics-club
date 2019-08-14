@@ -26,12 +26,15 @@ The methods we will be covering are as follows:
    1. SSH
 2. Remote file transfer
    1. SFTP
-   2. SCP
-   3. FTP
-   4. Git
-   5. Samba
+   2. SSHFS
+   3. SCP
+   4. FTP
+   5. Git
+   6. Samba
 3. Remote graphical interface
    1. VNC
+
+You can also get some basic info about these methods at the [official Raspberry Pi documentation][raspi-remote-access] on remote access.
 
 ### SSH
 
