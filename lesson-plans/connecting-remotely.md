@@ -299,7 +299,26 @@ Remember to choose `connect using different credentials` in order to specify the
 
 ### Git
 
-### File Sharing (Samba)
+Git is neither a remote command execution protocol nor a remote file transfer protocol. Instead, it is a distributed version control platform. You should get into the habit of using a version control system for all of your projects, as this will help you to keep track of how your project has evolved over time and what changes have been made to which files. This is immensely important when you start working on larger projects with other people, especially if some of you are working on the same source files at the same time.
+I will not write an in depth tutorial on using git here, as there are many better tutorials on the internet. Here are links to some of them:
+
+* [Try Git][try-github]
+* [Git Internals PDF][git-internals-pdf]
+* [A visual guide to Git][visual-git]
+* [Thinking in Git][think-git]
+* [5 Git tutorials for beginners][git-tutorials-medium]
+* [Git tutorials repo][git-tutorials-repo]
+
+We have already been using Git in the sense that these documents are stored on GitHub, which is a Git repository management system in the cloud (i.e. on the internet). Git is also installed on the Raspberry Pi by default, so you shouldn't need much to get started.
+
+The basic workflow that you can follow if you use Git to manage your source code is as follows:
+
+1. Make a change to your source code
+2. Commit this change to your local git repository
+3. Push the change to your GitHub repository
+4. Pull the code from your GitHub repository to your Raspberry Pi
+5. The code is now on your Pi and you can compile/run it as if you had created it directly on the Pi.
+
 
 ### VNC
 
