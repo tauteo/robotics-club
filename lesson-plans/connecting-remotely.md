@@ -319,6 +319,57 @@ The basic workflow that you can follow if you use Git to manage your source code
 4. Pull the code from your GitHub repository to your Raspberry Pi
 5. The code is now on your Pi and you can compile/run it as if you had created it directly on the Pi.
 
+### SMB/CIFS
+
+This is a networking protocol which is used by Windows to provide share access to things like files, printers, serial ports and so on. An implementation of this protocol which can be installed on Linux is Samba. The Samba implementation can be used to mount a shared Windows folder on the Raspberry Pi, thus giving you access to files which were created in Windows. It can also be used to share a directory on the Pi, so that it can be accessed by a Windows client.
+
+Samba is not installed on the Pi by default, so in order to use it, we first need to install it:
+
+```bash
+pi@raspberry:~ $ sudo apt update
+pi@raspberry:~ $ sudo apt install samba samba-common-bin smbclient cifs-utils
+```
+
+In order to access a folder on a Windows machine, we first need to share a folder on Windows. Once we have shared a folder, we can mount it on the Raspberry Pi:
+
+```bash
+# first create a directory that will be used as a mount point
+pi@raspberry:~ $ mkdir windowshare
+# then mount the shared Windows folder to the new directory
+# the <hostname> is the ip address of your Windows machine
+# you must also provide the name of the Windows user that will be used to access the shared folder
+pi@raspberry:~ $ sudo mount.cifs //<hostname>/<sharedfoldername> /home/pi/windowshare -o user=<windowsusername>
+# the shared folder is now mounted and you can access is like you would any other directory on the Pi
+pi@raspberry:~ $ cd windowshare
+pi@raspberry:~ $ ls
+```
+
+In order to share a directory from the Pi that you will access on Windows, you need to do the following:
+
+```bash
+# first create a folder to be shared
+pi@raspberry:~ $ mkdir shared
+# then edit the samba config to share the new folder
+pi@raspberry:~ $ sudo nano /etc/samba/smb.conf
+```
+
+The following should be appended (i.e. added to the end) of the `smb.conf` file:
+
+```text
+[share]
+    path = /home/pi/shared
+    read only = no
+    public = yes
+    writable = yes
+```
+
+You should also edit the `workgroup` entry in the `smb.conf` file:
+
+```text
+workgroup = <your workgroup name>
+```
+
+The shared folder should now appear on your Windows machine under "*Network*". You can also map this as a network drive.
 
 ### VNC
 
