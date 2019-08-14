@@ -251,6 +251,52 @@ scp "my file.txt" pi@192.168.0.1:
 SFTP (SSH File Transfer Protocol) provides file access, file transfer and file management over SSH. It is easier to set up than FTP, especially if SSH is already enabled.  
 The easiest way to use SFTP is with the [WinSCP][winscp-home] client. This client will allow you to browse and transfer files, to and from, the Raspberry Pi using a username and password or using the public key setup described in the SSH section.
 
+### SSHFS
+
+SSHFS (SSH File System) allows you to mount and interact with files and folders (directories) that are located on a remote system, using SSH as a protocol. The interaction between client and server happens via SFTP.
+
+You can use SSHFS from either a Linux or a Windows client, although a Linux client is somewhat easier.
+
+#### Linux SSHFS
+
+First install SSHFS:
+
+```bash
+me:~ $ sudo apt install sshfs
+```
+
+Then create a mount directory and mount the sshfs remote directory:
+
+```bash
+# create a directory to hold all of the pi files
+me:~ $ mkdir pi
+# mount the pi's filesystem to this directory
+me:~ $ sshfs pi@192.168.0.1: pi
+```
+
+You can now use the directory as if it were a local directory:
+
+```bash
+# move into the pi directory
+me:~ $ cd pi
+# you are now in the pi user's home directory on the remote
+# any filesystem commands you execute will be done on the remote
+# programs that you run will still be run on your local system
+me:~/pi $ ls
+```
+
+This will also mount the pi's filesystem for use by your graphical file manager, and supports things like drag-and-drop to copy files between systems. You can also use your local graphical editors to edit files on the pi's filesystem.
+
+#### Windows SSHFS
+
+Using SSHFS is slightly more complicated to install, but just as easy to use.
+
+First, install the *stable* release of [WinFSP][winfsp-install].  
+Second, install the *stable* release of [SSHFS-Win][sshfswin-install].
+
+Once these two programs are installed, you can map a remote drive using the normal "map network drive" method. Enter the string `\\sshfs\<user>@<host>` in the `Folder` text box in the `map network drive` dialog. This will map the home folder of the user you specified to the drive letter you specified.  
+Remember to choose `connect using different credentials` in order to specify the username and password of the remote machine. This method does not currently support key-based authentication in Windows.
+
 ### Git
 
 ### File Sharing (Samba)
