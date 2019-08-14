@@ -373,6 +373,38 @@ The shared folder should now appear on your Windows machine under "*Network*". Y
 
 ### VNC
 
+VNC (Virtual Network Computing) is a protocol designed to provide remote access to a graphical user interface (desktop) on another system. VNC is also a client-server protocol, which means that a VNC client can connect to an instance of a VNC server which is installed on a remote system.
+RealVNC is an implementation of the VNC protocol and is installed on the Pi by default. It includes both a server and a client component, which means that you can VNC to your Pi's desktop from another machine, and also VNC to another machine from your Pi.  
+It is important to note that if the Raspberry Pi is started in "headless" mode (i.e. without a screen connected to it), it will not actually have a desktop running to which you can VNC. You can overcome this problem by starting a "*virtual desktop*" and then connecting to this.
+
+Although VNC is installed by default, it is also disabled by default. You can enable it as follows:
+
+```bash
+# first make sure that the latest version is installed
+pi@raspberry:~ $ sudo apt update
+pi@raspberry:~ $ sudo apt install realvnc-vnc-server realvnc-vnc-viewer
+# then run the config utility
+pi@raspberry:~ $ sudo raspi-config
+```
+
+Navigate to `Interfacing Options` in the config utility, then select `Yes` next to the `VNC` entry. Exiting the config utility should restart your Pi.
+
+In order to connect from Windows, you will need to download [VNC Viewer][vnc-viewer]. You can then connect to the Pi directly by simply entering the Pi's IP address into the viewer and connecting. This will prompt you for a username and password, where you can simply enter the values that you use to normally log into the Pi.
+
+To run a virtual desktop (for when you started in "headless" mode), do the following:
+
+1. SSH into your Pi
+2. Run the command `vncserver`, and take note of the IP address:display nr which is printed. This will be in the format `192.168.0.1:1`.
+3. Enter the IP address:display nr into VNC Viewer on your local machine and connect
+
+You can destroy a virtual desktop by running:
+
+```bash
+pi@raspberry:~ $ vncserver -kill :<display-number>
+```
+
+This will immediately stop any existing connections to the virtual desktop.
+
 ## Remote Development
 
 ### VS Code Remote
