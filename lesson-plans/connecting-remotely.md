@@ -407,6 +407,17 @@ This will immediately stop any existing connections to the virtual desktop.
 
 ## Remote Development
 
+### Dev Introduction
+
+Up to now, we have been writing programs in one of two ways. Either we have written and compiled the source code directly on the Pi, or we have written the source code on another machine and then transferred it to the Pi for compiling.  
+In the first case, writing code on the Pi is not very user friendly. There are graphical editors that run on the Pi, but this requires that the Pi be connected to a dedicated screen, keyboard, and mouse. The alternative is to use a terminal based editor like `nano`, but this is a very restricted way of writing source code. Ideally we would like to be able to write code in a modern editor that provides us with things like syntax highlighting, code completion and so on. The Pi simply does not have the resources to run an editor like this.
+This brings us to the second case, where we write source code on another system which has the resources needed to run a modern code editor. The problem with this is that, although we get all of the benefits of a modern editor, we now need to transfer files to and from the Pi and it still does not allow us to do things like debugging our code.
+
+What we need is some way to connect to the Pi from our machine running the modern editor. Specifically, we need to be able to write code in the modern editor, without having to first transfer the source files from the Pi, and then be able to compile and debug the code on the Pi while still interfacing with it from the editor on our local machine.  
+This is exactly the problem which has now been solved in one of the preeminent code editors currently available, namely Visual Studio Code.
+
+VS Code is available for download, completely for free, and can run on Windows, Linux, and MacOS. It provides all of the benefits of a modern code editor, and in addition it provides the ability for *anyone* to write an extension that supplements the default capabilities of the editor. One such extension is called is called "VS Code Remote Development", and we will use this extension to be able to run the code editor interface on our local machine, while actually working on the (remote) Raspberry Pi.
+
 ### VS Code Remote
 
 #### Prerequisites
