@@ -126,6 +126,88 @@ Any new SSH connection will now use the public key stored in `~/.ssh/authorized_
 
 ### FTP
 
+FTP (File Transfer Protocol) is a method that is used to transfer files from one system to another system. It can provide access to files with or without authentication (usually by password) and used to be the de-facto standard for transfering files between sysytems. Due to the fact that it is not as secure as some other protocols, people have started using other methods to transfer files.  
+FTP also uses a client-server architecture. As such, an FTP server needs to be installed on the remote machine in order to allow clients on other machines to access files there.
+
+Unlike SSH, FTP is not installed on the Pi by default. You can install an FTP server as follows:
+
+```bash
+pi@raspberry:~ $ sudo apt install pure-ftpd
+```
+
+There are some additional configuration steps after the serve is installed. The configuration steps are as follows:
+
+1. Create a new user that will be used for FTP access **only**
+2. Create a new group to which to add this user
+3. Set an FTP base directory
+4. Set a user alias for uploading files
+5. Define an authentication method
+6. Complete additional configuration
+
+The commands to achieve this are as follows:
+
+```bash
+# create the ftp group and user. the user must not be able to login and must have no home directory
+pi@raspberry:~ $ sudo groupadd ftpgroup
+pi@raspberry:~ $ sudo useradd ftpuser -g ftpgroup -s /sbin/nologin -d /dev/null
+# make a base ftp directory and make it accessible to ftpuser
+pi@raspberry:~ $ sudo mkdir /home/pi/FTP
+pi@raspberry:~ $ sudo chown -R ftpuser:ftpgroup /home/pi/FTP
+# create an alias (virtual user) for uploading files. enter a password when prompted
+pi@raspberry:~ $ sudo pure-pw useradd upload -u ftpuser - ftpgroup -d /home/pi/FTP -m
+password:
+confirm:
+# set up a virtual user database
+pi@raspberry:~ $ sudo pure-pw mkdb
+# define an authentication method by linking to the ftp authentication DB
+pi@raspberry:~ $ sudo ln -s /etc/pure-ftpd/conf/PureDB /etc/pure-ftpd/auth 1puredb
+# restart the ftp server
+pi@raspberry:~ $ sudo service pure-ftpd restart
+```
+
+Additional configurations can be applied by creating a file with the name of the configuration option in the `/etc/pure-ftpd/conf/` directory.
+
+1. ChrootEveryone
+   1. Make a file called `ChrootEveryone` in the `/etc/pure-ftpd/conf/` directory
+   2. Edit the file and type `yes`
+   3. Save the file and exit `Ctrl + X` and then `Y` and `Enter`
+2. NoAnonymous
+   1. Make a file called `NoAnonymous` in the `/etc/pure-ftpd/conf/` directory
+   2. Edit the file and type `yes`
+   3. Save the file and exit `Ctrl + X` and then `Y` and `Enter`
+3. AnonymousCanCreateDirs
+   1. Make a file called `AnonymousCanCreateDirs` in the `/etc/pure-ftpd/conf/` directory
+   2. Edit the file and type `no`
+   3. Save the file and exit `Ctrl + X` and then `Y` and `Enter`
+4. DisplayDotFiles
+   1. Make a file called `DisplayDotFiles` in the `/etc/pure-ftpd/conf/` directory
+   2. Edit the file and type `no`
+   3. Save the file and exit `Ctrl + X` and then `Y` and `Enter`
+5. DontResolve
+   1. Make a file called `DontResolve` in the `/etc/pure-ftpd/conf/` directory
+   2. Edit the file and type `yes`
+   3. Save the file and exit `Ctrl + X` and then `Y` and `Enter`
+6. ProhibitDotFilesRead
+   1. Make a file called `ProhibitDotFilesRead` in the `/etc/pure-ftpd/conf/` directory
+   2. Edit the file and type `yes`
+   3. Save the file and exit `Ctrl + X` and then `Y` and `Enter`
+7. ProhibitDotFilesWrite
+   1. Make a file called `ProhibitDotFilesWrite` in the `/etc/pure-ftpd/conf/` directory
+   2. Edit the file and type `yes`
+   3. Save the file and exit `Ctrl + X` and then `Y` and `Enter`
+8. FSCharset
+   1. Make a file called `FSCharset` in the `/etc/pure-ftpd/conf/` directory
+   2. Edit the file and type `UTF8`
+   3. Save the file and exit `Ctrl + X` and then `Y` and `Enter`
+
+Restart the server again:
+
+```bash
+pi@raspberry:~ $ sudo service pure-ftpd restart
+```
+
+You should now be able to transfer files to and from the Raspberry Pi using an FTP client like FileZilla (remember to use the `upload` user and password that you created previously)
+
 ### SCP
 
 ### Git
